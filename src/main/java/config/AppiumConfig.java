@@ -28,14 +28,13 @@ public class AppiumConfig {
 
     @AfterSuite
     public void tearDown() {
-        if (driver != null){
             driver.quit();
-            driver = null;
+
     }
-        Runtime.getRuntime().halt(0);
-}
-
-
 
 }
+
+
+
+
 
