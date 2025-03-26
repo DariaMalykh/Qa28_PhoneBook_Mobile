@@ -11,25 +11,31 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class AppiumConfig {
-    public static AppiumDriver<AndroidElement>driver;
+    public static AppiumDriver<AndroidElement> driver;
 
     @BeforeSuite
     public void setUp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("platformName","Android");
-        capabilities.setCapability("deviceName"," Nex1");
-        capabilities.setCapability("platformVersion","8.0");
-        capabilities.setCapability("appPackage","com.sheygam.contactapp");
-        capabilities.setCapability("appActivity",".SplashActivity");
-        capabilities.setCapability("automationName","Appium");
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("deviceName", " Nex1");
+        capabilities.setCapability("platformVersion", "8.0");
+        capabilities.setCapability("appPackage", "com.sheygam.contactapp");
+        capabilities.setCapability("appActivity", ".SplashActivity");
+        capabilities.setCapability("automationName", "Appium");
 
-        driver = new AppiumDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+        driver = new AppiumDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
     @AfterSuite
-    public void tearDown(){
-        driver.quit();
+    public void tearDown() {
+        if (driver != null){
+            driver.quit();
+            driver = null;
     }
+        Runtime.getRuntime().halt(0);
+}
+
 
 
 }
+
