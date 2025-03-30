@@ -21,6 +21,9 @@ public class ContactListScreen extends BaseScreen{
     @FindBy(xpath="//*[@text='Logout']")
     AndroidElement logoutBtn;
 
+    @FindBy(xpath="//*")
+    AndroidElement plusBtnBtn;
+
 
 
     public boolean isActivityTitleDisplayed(String text){
@@ -29,14 +32,23 @@ public class ContactListScreen extends BaseScreen{
     }
 
     public AuthenticationScreen logout(){
-        menuOptions.click();
-        logoutBtn.click();
+        if(activityTextView.getText().equals("Contact list")) {
+            menuOptions.click();
+            logoutBtn.click();
+        }
         return new AuthenticationScreen(driver);
     }
     public ContactListScreen isAccountOpened(){
         Assert.assertTrue(isActivityTitleDisplayed("Contact list"));
         return this;
     }
+
+    public AddNewContactScreen openContactForm(){
+        plusBtnBtn.click();;
+        return new AddNewContactScreen(driver);
+    }
+
+
 
 
 
