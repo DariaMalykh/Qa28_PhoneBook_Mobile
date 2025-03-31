@@ -10,25 +10,25 @@ public class AddNewContactScreen extends BaseScreen{
         super(driver);
     }
 
-    @FindBy(id="")
+    @FindBy(id="com.sheygam.contactapp:id/inputName")
     AndroidElement nameEditText;
 
-    @FindBy(id="")
+    @FindBy(id="com.sheygam.contactapp:id/inputLastName")
     AndroidElement lastNameEditText;
 
-    @FindBy(id="")
+    @FindBy(id="com.sheygam.contactapp:id/inputEmail")
     AndroidElement emailEditText;
 
-    @FindBy(id="")
+    @FindBy(id="com.sheygam.contactapp:id/inputPhone")
     AndroidElement phoneEditText;
 
-    @FindBy(id="")
+    @FindBy(id="com.sheygam.contactapp:id/inputAddress")
     AndroidElement addressEditText;
 
-    @FindBy(id="")
+    @FindBy(id="com.sheygam.contactapp:id/inputDesc")
     AndroidElement descriptionEditText;
 
-    @FindBy(id="")
+    @FindBy(id="com.sheygam.contactapp:id/createBtn")
     AndroidElement createBtn;
 
     public AddNewContactScreen fillContactForm(Contact contact){

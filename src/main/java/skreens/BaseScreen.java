@@ -23,8 +23,10 @@ public class BaseScreen {
     public void type(AndroidElement element,String text){
         element.click();
         element.clear();
-        if(text != null)
+        if(text != null) {
             element.sendKeys(text);
+        }
+        driver.hideKeyboard();//метод скрывает клавиатуру!
     }
 
     public boolean isShouldHave(AndroidElement element, String text, int time){
