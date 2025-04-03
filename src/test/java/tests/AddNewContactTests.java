@@ -46,8 +46,37 @@ public class AddNewContactTests extends AppiumConfig {
 
     @Test
     public void createNewContactSuccessReq(){
+        int i = new Random().nextInt(1000)+1000;
+        Contact contact = Contact.builder()
+                .name("Simon")
+                .lastName("Wow")
+                .email("Wow"+ i + "@gmail.com")
+                .phone("67895467"+i)
+                .address("Haifa")
+                .build();
+        new ContactListScreen(driver)
+                .openContactForm()
+                .fillContactForm(contact)
+                .submitContactForm()
+                .isContactAddedByName(contact.getName(),contact.getLastName());
 
+    }
 
+    @Test
+    public void createNewContactWithEmpttyName(){
+        Contact contact = Contact.builder()
+                .name("")
+                .lastName("Wow")
+                .email("Wow@gmail.com")
+                .phone("6789546787")
+                .address("Haifa")
+                .description("Empty name")
+                .build();
+        new ContactListScreen(driver)
+                .openContactForm()
+                .fillContactForm(contact)
+                .submitContactFormNegative()
+                .isErrorMessageContainsText("{name=must not be blank}");
     }
 
     @AfterClass

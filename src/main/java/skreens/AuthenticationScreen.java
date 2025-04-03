@@ -51,10 +51,7 @@ public class AuthenticationScreen extends BaseScreen {
         return this;
     }
     public AuthenticationScreen isErrorMessageHasText(String text){
-        Alert alert = new WebDriverWait(driver,10).until(ExpectedConditions.alertIsPresent());
-        driver.switchTo().alert();//переключить драйвер а алерт
-        Assert.assertTrue(alert.getText().contains(text));
-        alert.accept();//закрывает алерт
+        checkAlertText(text);
         return this;
     }
 
