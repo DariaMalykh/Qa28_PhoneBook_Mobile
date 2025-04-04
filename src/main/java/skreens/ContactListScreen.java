@@ -39,6 +39,9 @@ public class ContactListScreen extends BaseScreen{
     @FindBy(id="android:id/button1")
     AndroidElement yesBtn;
 
+    int countBefore;
+    int countAfter;
+
 
 
 
@@ -80,6 +83,9 @@ public class ContactListScreen extends BaseScreen{
     }
 
     public ContactListScreen deleteFirstContact(){
+      //  isActivityTitleDisplayed("Contact list");
+        countBefore = contactList.size();
+        System.out.println(countBefore);
         AndroidElement first = contactList.get(0);
         Rectangle rectangle = first.getRect();//узнать координаты элемента
         int xFrom = rectangle.getX()+rectangle.getWidth()/8;
@@ -90,19 +96,18 @@ public class ContactListScreen extends BaseScreen{
         touchAction.longPress(PointOption.point(xFrom,y))
                 .moveTo(PointOption.point(xTo,y))
                 .release().perform();//захват точки и перетягивание к другой точке
-
-
-
-
-
+        should(yesBtn,8);
+        yesBtn.click();
+        pause(2000);
+        countAfter = contactList.size();
+        System.out.println(countAfter);
 
         return this;
     }
 
 
-
-
-
-
-
+    public ContactListScreen isListSizeLessOnOne() {
+        Assert.assertEquals(countBefore-countAfter,1);
+        return this;
+    }
 }
